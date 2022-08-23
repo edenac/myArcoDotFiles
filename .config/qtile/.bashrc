@@ -1,6 +1,6 @@
 ### EXPORT ###
-export EDITOR='nano'
-export VISUAL='nano'
+export EDITOR='nvim'
+export VISUAL='nvim'
 export HISTCONTROL=ignoreboth:erasedups
 export PAGER='most'
 
@@ -343,10 +343,9 @@ alias personal='cp -Rf /personal/* ~'
 
 # reporting tools - install when not installed
 
-#tmux personalizado
-tmux
-tmux source-file ~/.config/tmux/.tmux.conf
-
+# tmux
+# tmux source-file ~/.config/tmux/.tmux.conf
+# fish
 neofetch
 #screenfetch
 #alsi
