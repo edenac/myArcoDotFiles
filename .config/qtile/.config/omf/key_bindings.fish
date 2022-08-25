@@ -6,6 +6,7 @@ bind \cy redo
 bind \e\[3\;5~ kill-word
 bind \eh history
 bind \er ranger
-bind \t forward-char
 bind \et tmux
+bind \ct 'tree -C'
+# bind \t forward-char
 
