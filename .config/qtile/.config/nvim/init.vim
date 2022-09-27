@@ -1,4 +1,4 @@
-"---------------------------------------------------------------------------------------------------setting----------------------------------------------------------------------------------------------
+"--------------------setting---------------------------------
 let g:skip_defaults_vim = 1
 :set number
 :set relativenumber
@@ -38,14 +38,12 @@ let g:skip_defaults_vim = 1
 :set clipboard=unnamedplus
 :set shell=sh
 :set mouse=a
-" :set mouse-=a
 :autocmd InsertEnter,InsertLeave * set cul!
-" :set gcr=a:blinkon0
 set matchpairs+=<:>
 
-""---------------------------------------------------------------------------------------------------setting----------------------------------------------------------------------------------------------
+"--------------------setting--------------------------------
 
-"---------------------------------------------------------------------------------------------------funciones para la inastalacion de plugin------------------------------------------------------------
+"------funciones para la inastalacion de plugin-------------
 
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 if has('win32')&&!has('win64')
@@ -71,70 +69,97 @@ if !filereadable(vimplug_exists)
   autocmd VimEnter * PlugInstall
 endif
 
-"---------------------------------------------------------------------------------------------------funciones para la inastalacion de plugs--------------------------------------------------------------
+"------funciones para la inastalacion de plugin-------------
 
-" ----------------------------------------------------------------------------------------------------PLUGS----------------------------------------------------------------------------------------------
+" --------------------PLUGS---------------------------------
 
 " Required:
 call plug#begin(expand('~/.config/nvim/plugged'))
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
-Plug 'tpope/vim-commentary'
+"java config
+"ir dejando bien seteado para java 
+" ir limpiando de plugins comentandolas y clean 
+" comentar todo y solo ir dejando lo que que vaya ir ocupando checar los
+" plugins que tengo escritos y los que neceisto para empezar a hacer java aqui
+
+
+
+
+" git
 Plug 'tpope/vim-fugitive'
-Plug 'rbong/vim-flog'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'airblade/vim-gitgutter'
-Plug 'vim-scripts/grep.vim'
-Plug 'vim-scripts/CSApprox'
-Plug 'Raimondi/delimitMate'
-Plug 'majutsushi/tagbar'
-Plug 'dense-analysis/ale'
-Plug 'Yggdroot/indentLine'
-Plug 'editor-bootstrap/vim-bootstrap-updater'
 Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
-Plug 'tomasr/molokai'
-Plug 'http://github.com/tpope/vim-surround' " Surrounding ysw)
-Plug 'https://github.com/tpope/vim-commentary' " For Commenting gcc & gc
-Plug 'https://github.com/vim-airline/vim-airline' " Status bar
-Plug 'https://github.com/lifepillar/pgsql.vim' " PSQL Pluging needs :SQLSetType pgsql.vim
-Plug 'https://github.com/ap/vim-css-color' " CSS Color Preview
+Plug 'rbong/vim-flog'
+Plug 'airblade/vim-gitgutter'
+
+" themes & look
+Plug 'vim-airline/vim-airline-themes'
 Plug 'https://github.com/rafi/awesome-vim-colorschemes' " Retro Scheme
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'https://github.com/tc50cal/vim-terminal' " Vim Terminal
-Plug 'https://github.com/preservim/tagbar' " Tagbar for code navigation
-Plug 'https://github.com/terryma/vim-multiple-cursors' " CTRL + N for multiple cursors:
-Plug 'easymotion/vim-easymotion' "easymotion = vim sneak
-Plug 'preservim/nerdcommenter'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'scrooloose/nerdtree'
-Plug 'https://github.com/PhilRunninger/nerdtree-buffer-ops'
-Plug 'https://github.com/PhilRunninger/nerdtree-visual-selection'
-Plug 'jistr/vim-nerdtree-tabs'
+Plug 'tomasr/molokai'
+Plug 'https://github.com/vim-airline/vim-airline' " Status bar
 Plug 'ryanoasis/vim-devicons'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'xuyuanp/scrollbar.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} "hightlighting
 Plug 'camspiers/animate.vim'
 Plug 'camspiers/lens.vim'
-Plug 'nvim-lua/plenary.nvim'
+Plug 'antoinemadec/FixCursorHold.nvim'
+
+" web
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'vim-scripts/CSApprox'
+Plug 'editor-bootstrap/vim-bootstrap-updater'
+Plug 'https://github.com/ap/vim-css-color' " CSS Color Preview
+
+"Vim tools
+Plug 'Yggdroot/indentLine'
+Plug 'https://github.com/tpope/vim-commentary' " For Commenting gcc & gc
+Plug 'https://github.com/terryma/vim-multiple-cursors' " CTRL + N for multiple cursors:
+Plug 'https://github.com/PhilRunninger/nerdtree-visual-selection'
+Plug 'wesQ3/vim-windowswap'
+Plug 'rcarriga/nvim-notify'
+Plug 'Raimondi/delimitMate'
+Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
+Plug 'dense-analysis/ale' "corrector
+Plug 'sharkdp/fd' "command line completion
+Plug 'nvim-lua/plenary.nvim' "lua recognize too required
+Plug 'majutsushi/tagbar'
+
+"file-browser/searching's
+Plug 'vim-scripts/grep.vim'
+Plug 'https://github.com/preservim/tagbar' " Tagbar for code navigation
+Plug 'easymotion/vim-easymotion' "easymotion = vim sneak
+Plug 'scrooloose/nerdtree'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'https://github.com/PhilRunninger/nerdtree-buffer-ops'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'ThePrimeagen/harpoon'
 Plug 'mhinz/vim-startify'
 Plug 'nvim-telescope/telescope-file-browser.nvim'
 Plug 'nvim-telescope/telescope-project.nvim'
 Plug 'cljoly/telescope-repo.nvim'
-Plug 'sharkdp/fd'
 Plug 'windwp/nvim-spectre'
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'wesQ3/vim-windowswap'
-Plug 'rcarriga/nvim-notify'
-Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
-Plug 'mfussenegger/nvim-dap'
-Plug 'rcarriga/nvim-dap-ui'
-Plug 'antoinemadec/FixCursorHold.nvim'
-Plug 'rcarriga/neotest'
+
+"IDE
+Plug 'neoclide/coc.nvim', {'branch': 'release'} "autocompletado de lenguajes de programacion
+
+" java 
+  
+   
+" rest = soapui o postman = para checar el backend de las peticiones sin UI 
+" requiere packer.nvim  https://github.com/rest-nvim/rest.nvim lua maybe?
+     
+" Plug 'mfussenegger/nvim-dap' "debuger
+" Plug 'rcarriga/nvim-dap-ui'
+" Plug 'rcarriga/neotest'
+" Plug 'puremourning/vimspector'
+
+
+" Plug 'preservim/nerdcommenter'
+" Plug 'https://github.com/lifepillar/pgsql.vim' " PSQL Pluging needs :SQLSetType pgsql.vim
+" Plug 'http://github.com/tpope/vim-surround' " Surrounding ysw)
 
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -165,7 +190,7 @@ endif
 
 call plug#end()
 
-" ----------------------------------------------------------------------------------------------------comandos modo escritura inoremaps--------------------------------------------------------------
+" ----comandos modo escritura inoremaps-------------------
 imap <F12> <C-R>=expand('%:p:h')<CR>
 imap <c-s> <Esc>:w<CR>a
 imap <C-Del> <Esc>:normal lcw<CR>a
@@ -174,8 +199,8 @@ imap <c-s-del> <esc> :normal d$<CR>a
 imap <m-0> <esc> :normal d0<CR>i
 imap <c-d> <esc> :normal dd<CR>i
 imap <m-'> <esc> :normal gcc<CR>i
-" ----------------------------------------------------------------------------------------------------comandos modo escritura inoremaps--------------------------------------------------------------
-" ----------------------------------------------------------------------------------------------------PLUGS---------------------------------------------------------------------------------------------
+" ----comandos modo escritura inoremaps-------------------
+" --------------------PLUGS---------------------------------
 "-- startify --
 let g:startify_lists = [
     \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
@@ -193,7 +218,7 @@ let g:startify_bookmarks = [
     " \{ 'd': '~/aqui' },ir agregando rutas puestas en bookmark
     " \{ 'f': '~/aqui' },ir agregando rutas que vaya poniendo en bookmark
 "-- startify --
-"---------------------------------------------------------------------------------------------------coc-------------------------------------------------------------------------------------------------
+"-----------------------coc-----------------------------------
 " Required:
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -225,15 +250,16 @@ function! s:show_documentation()
 endfunction
 "refrescar el autocompletado para que aparezcan opciones
 noremap <silent><expr> <c-space> coc#refresh()
-"------------------------------------------------------------------------------------------------------coc----------------------------------------------------------------------------------------------
 
-"------------------------------------------------------------------------------------------------------shortcuts customized without lider---------------------------------------------------------------
+"-----------------------coc-----------------------------------
+
+"-------shortcuts customized without lider--------------------
 
 "nerdtree
 map <F2> :NERDTreeFind<CR>
 map <F3> :NERDTreeToggle<CR>
 
-" abrir terminal, open explorer, restart neovim 
+" open explorer, restart neovim 
 " poner aqui los atajos que esplico la linea anterior
 " resize split,  + = se agranda , - = se achica
 
@@ -253,17 +279,17 @@ nmap<silent>¿ :normal $<CR>
 nmap <silent>d¿ :normal d$<CR>
 nmap <silent>y¿ :normal y$<CR>
 "buffers adelante y atras
-noremap <a-h> :bp<CR>
-nnoremap <a-l> :bn<CR>
-
+nnoremap <a-h> :bp<CR>
+nnoremap <a-l> :bn<CR> 
+" nnoremap <C-Tab> :bn<CR> intentar el c-tab para cambiar por ahi
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-"------------------------------------------------------------------------------------------------------shortcuts customized without lider---------------------------------------------------------------
+"-------shortcuts customized without lider--------------------
 
-"----------------------------------------------------------------------------------shortcuts customized lider: espacio----------------------------------------------------------------------------------
+"------shortcuts customized lider: espacio--------------------
 
 let mapleader=" "
 nmap <Leader>f <Plug>(easymotion-sn)
@@ -274,7 +300,11 @@ nmap <Leader>q :q<CR>
 nmap <Leader>a :wq<CR>
 nmap <Leader>W :wq!<CR>
 nmap <Leader>Q :q!<CR>
-nnoremap <leader>t :split <CR>:ter<CR>
+
+"Ejecutar archivo actual en toggletermina con java con TermExec
+nmap <Leader>T :TermExec cmd='javac % ; java %'<CR>
+
+
 
 "splits
 noremap <Leader>h :<C-u>split<CR>
@@ -337,11 +367,11 @@ nmap <leader>sR <Plug>SnipRunOperator
 " vmap f <Plug>SnipRun
 " -- sniprun --
 
-"----------------------------------------------------------------------------------shortcuts customized lider: espacio----------------------------------------------------------------------------------
+"------shortcuts customized lider: espacio--------------------
 
-"-----------------------------------------------------------------------------------------------------shortcuts customized.-----------------------------------------------------------------------------
+"----------------shortcuts customized.-----------------------
 
-"----------------------------------------------------------------------------------shortcuts customized lider:, ----------------------------------------------------------------------------------------
+"------------shortcuts customized lider:, --------------------
 
 "Required:
 filetype plugin indent on
@@ -476,9 +506,9 @@ nmap <leader>h4 :lua require("harpoon.ui").nav_file(4)<CR>
 
 "-------------------------------------- harpoon -----------------------------
 
-"----------------------------------------------------------------------------------shortcuts customized lider:, ----------------------------------------------------------------------------------------
+"------------------------shortcuts customized lider:, -----------------------
 
-"-----------------------------------------------------------------------------------------visualmode----------------------------------------------------------------------------------------------------
+"----------------------------visualmode--------------------------------------
 
 " Vmap for maintain Visual Mode after shifting > and < (identado para dar o quitar tabs)
 vmap < <gv
@@ -488,16 +518,9 @@ vmap > >gv
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-"----------------------------------------------------------------------------------------visualmode----------------------------------------------------------------------------------------------------
+"----------------------------visualmode------------------------------------
 
-
-"---------------------------------------------------------------------------------------- terminal mode ----------------------------------------------------------------------------------------------------
-"salir de terminal a modo comando de vim
-:tnoremap <Esc> <C-\><C-n>
-
-"---------------------------------------------------------------------------------------- terminal mode ----------------------------------------------------------------------------------------------------
-
-"-----------------------------------------------------------------------------------------------------------Rules-------------------------------------------------------------------------------------
+"----------------------------Rules-----------------------------------------
 
 " session management
 let g:session_directory = "~/.config/nvim/session"
@@ -718,38 +741,38 @@ noremap <C-h> <C-w>h
 "-------------------nerdcommenter rules----------------------------------------
 "reglas del nerdcommenter con lider asignado como ,(checar documentation para
 "ver los shortcuts)
-let g:NERDCreateDefaultMappings = 1
+" let g:NERDCreateDefaultMappings = 1
 " Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
+" let g:NERDSpaceDelims = 1
 " Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
+" let g:NERDCompactSexyComs = 1
 " Align line-wise comment delimiters flush left instead of following code
 " indentation
-let g:NERDDefaultAlign = 'left'
+" let g:NERDDefaultAlign = 'left'
 " Set a language to use its alternate delimiters by default
-let g:NERDAltDelims_java = 1
+" let g:NERDAltDelims_java = 1
 " Add your own custom formats or override the defaults
-let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+" let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
 " Allow commenting and inverting empty lines (useful when commenting a
 " region)
-let g:NERDCommentEmptyLines = 1
+" let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
+" let g:NERDTrimTrailingWhitespace = 1
 " Enable NERDCommenterToggle to check all selected lines is commented or not 
-let g:NERDToggleCheckAllLines = 1
+" let g:NERDToggleCheckAllLines = 1
 "-------------------nerdcommenter rules----------------------------------------
 
-"-----------------------------------------------------------------------------------------------------------Rules-------------------------------------------------------------------------------------
+"---------------------------------Rules----------------------------------------
 
-"---------------------------------------------------------------------------------------- Include user's local vim config-----------------------------------------------------------------------------
+"--------------------Include user's local vim config---------------------------
 
 if filereadable(expand("~/.config/nvim/local_init.vim"))
   source ~/.config/nvim/local_init.vim
 endif
 
-"---------------------------------------------------------------------------------------- Include user's local vim config-----------------------------------------------------------------------------
+"--------------------Include user's local vim config---------------------------
 
-"---------------------------------------------------------------------------------------- scrollbar -----------------------------------------------------------------------------
+"-------------------------------------scrollbar -------------------------------
 augroup ScrollbarInit
     autocmd!
     autocmd CursorMoved,VimResized,QuitPre * silent! lua require('scrollbar').show()
@@ -765,16 +788,16 @@ let g:scrollbar_width = 1
     \ 'tail': '▼',
     \ }
 
-"---------------------------------------------------------------------------------------- scrollbar -----------------------------------------------------------------------------
+"-------------------------------------scrollbar -------------------------------
 
-"---------------------------------------------------------------------------------------- lens -----------------------------------------------------------------------------
+"---------------------------------lens ----------------------------------------
 let g:lens#disabled_filetypes = ['nerdtree', 'fzf']
 let g:lens#height_resize_max = 55
 let g:lens#height_resize_min =20
 let g:lens#width_resize_max = 200
 let g:lens#width_resize_min = 20
-"---------------------------------------------------------------------------------------- lens -----------------------------------------------------------------------------
-"----------------------------------------------------------------------------------------------------------Marcos visuales----------------------------------------------------------------------------
+"---------------------------------lens ----------------------------------------
+"----------------------Marcos visuales-----------------------------------------
 
 " vim-airline
 if !exists('g:airline_symbols')
@@ -842,4 +865,34 @@ endif
      let g:airline_symbols.readonly = ''
      let g:airline_symbols.linenr = ''
 
-"----------------------------------------------------------------------------------------------------------Marcos visuales----------------------------------------------------------------------------
+"----------------------Marcos visuales-----------------------------------------
+"
+"vundle
+set nocompatible              " be iMproved, required
+filetype off                  " required
+ 
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+ 
+Plugin 'VundleVim/Vundle.vim'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+
+
+" lua -> packer
+lua require('luaplugins.plugins')
+
+" configs de plugins
+lua require('luaplugins.toggleterm')
+
+
+" plug = guarda los plugs en la carpeta de home/.config/nvim/plugged
+" vundle = guarda lkos plugins en home/.vim/bundle/Vundle
+" packer = guarda los plugs en home/.local/share/nvim/site/pack/packer/start
+" sabiendo esto todas las configs de los plugins se pueden editar en sus
+" archivos mismos y tambien en la carpeta home/.config/nvim/lua/luaplugins con
+" la invocacion de lua de aqui arriba ahi mismo esta el archivo que instala
+" packer en donde se instalan las extensiones con su sintaxis, solo que al ser
+" mucha la configuracion la prefiero tener guardada en aquel archivo
