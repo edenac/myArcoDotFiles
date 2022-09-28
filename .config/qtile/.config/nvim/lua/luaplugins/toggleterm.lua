@@ -39,28 +39,14 @@ end
 vim.cmd ('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 local Terminal = require("toggleterm.terminal").Terminal
-local lazygit = Terminal:new {
-  cmd = "lazygit",
-  hidden = true,
-  direction = "float",
-  float_opts = {
-    border = "none",
-    width = 100000,
-    height = 100000,
-  },
-  on_open = function(_)
-    vim.cmd "startinsert!"
-    -- vim.cmd "set laststatus=0"
-  end,
-  on_close = function(_)
-    -- vim.cmd "set laststatus=3"
-  end,
-  count = 99,
-}
 
+-- aqui ya funciona pero esta dando conflicto el tmux pues primero se ejecuta esta tarea y luego tmux por eso parece que no jala por lo que ahora mismo tengo que darle un c-d una vez abierto para jale
+local lazygit = Terminal:new({ cmd= "lazygit", count = 5 })
 function _LAZYGIT_TOGGLE()
   lazygit:toggle()
 end
+
+
 
 local node = Terminal:new { cmd = "node", hidden = true }
 
@@ -133,7 +119,7 @@ function _FLOAT_TERM()
   float_term:toggle()
 end
 
-vim.api.nvim_set_keymap("n", "<m-1>", "<cmd>lua _FLOAT_TERM()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<m-1>", "<cmd>lua _FLOAT_TERM() <CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "<m-1>", "<cmd>lua _FLOAT_TERM()<CR>", { noremap = true, silent = true })
 
 local vertical_term = Terminal:new {
@@ -209,3 +195,8 @@ end
 
 vim.api.nvim_set_keymap("n", "<m-3>", "<cmd>lua _HORIZONTAL_TERM()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "<m-3>", "<cmd>lua _HORIZONTAL_TERM()<CR>", { noremap = true, silent = true })
+-- recordar que ahorita hay conflicto con tmux porque primero se ejcutan los comandos en la toggleterm y leugo tmux por lo que parece que no funciona pero al darle un exit con c-d se arregla y se ve por lo tanto hacer esto por ahora pues no quitaría el tmux de momento es pues esencial 
+-- al ejecutar estos comandos solo hay que presionar c-d de inmediato para que se pueda reproducir de inmediato, de esta manera lo que se hace es entrar a un layout simple
+-- vim.api.nvim_set_keymap("n", "<m-h>", "<cmd>lua _HTOP_TOGGLE()<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<m-l>", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", { noremap = true, silent = true })
+-- ambos comandos chocan con los que tengo para moverme por los buffers asi que no hay problema si abro la terminal y desde ahi tiro el comando por ahoa

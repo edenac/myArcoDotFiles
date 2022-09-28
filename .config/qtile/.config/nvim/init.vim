@@ -124,6 +124,10 @@ Plug 'dense-analysis/ale' "corrector
 Plug 'sharkdp/fd' "command line completion
 Plug 'nvim-lua/plenary.nvim' "lua recognize too required
 Plug 'majutsushi/tagbar'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'folke/trouble.nvim'
+Plug 'folke/todo-comments.nvim'
+
 
 "file-browser/searching's
 Plug 'vim-scripts/grep.vim'
@@ -146,18 +150,20 @@ Plug 'windwp/nvim-spectre'
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "autocompletado de lenguajes de programacion
 
 " java 
-  
+"TODO: crear java ide con coc-java , coc-java-debug , lsp , jdt/jdtls ,
+"dap/dapui , vimspector??? , eclipse/eclims native??? , para debug y para
+"build spring-springbot y seria todo , hecharme una vuelta por spacevim antes
+"para ver que se cuece y ver si es una manera mas rapida y especifica (?) 
    
 " rest = soapui o postman = para checar el backend de las peticiones sin UI 
 " requiere packer.nvim  https://github.com/rest-nvim/rest.nvim lua maybe?
-     
+
+" Plug 'mfussenegger/nvim-jdtls'    
 " Plug 'mfussenegger/nvim-dap' "debuger
 " Plug 'rcarriga/nvim-dap-ui'
 " Plug 'rcarriga/neotest'
-" Plug 'puremourning/vimspector'
 
 
-" Plug 'preservim/nerdcommenter'
 " Plug 'https://github.com/lifepillar/pgsql.vim' " PSQL Pluging needs :SQLSetType pgsql.vim
 " Plug 'http://github.com/tpope/vim-surround' " Surrounding ysw)
 
@@ -301,9 +307,18 @@ nmap <Leader>a :wq<CR>
 nmap <Leader>W :wq!<CR>
 nmap <Leader>Q :q!<CR>
 
-"Ejecutar archivo actual en toggletermina con java con TermExec
-nmap <Leader>T :TermExec cmd='javac % ; java %'<CR>
+"para //guardar como// un archivo una vez crear a la espera de que teclee como
+"lo quiero guardar en el modo comando 
+"antes de aplicar este comando verificar que estoy parado donde quiero
+"guardarlo o definir la ruta desde home si lo tengo a la mano pero con un ,-
+"lo tengo o un :pwd en consola 
+nmap <Leader>sa :lcd %:p:h<CR>:saveas 
 
+"Ejecutar archivo actual en toggletermina con java con TermExec
+nmap <Leader>j :TermExec cmd='clear; javac % ; java %'<CR>
+
+" shortcut para abrir terminal limpia con toggleterminal
+nmap <Leader>t :TermExec cmd='clear'<CR>
 
 
 "splits
@@ -432,11 +447,10 @@ noremap <Leader>gf :Flogsplit<CR>
 "cerrar sesion de o buffer que lo tengo con cierra la sesion por completo de
 "todos los buffers por completo
 " nnoremap <leader>sc :CloseSession<CR>
-
 " Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
 
-"ver donde estoy parado 
+"cambiar donde estoy parado al archivo seleccionado
 nnoremap <leader>- :lcd<CR>
 
 "listas de busqueda en pantalla buffers y archivo en la carpeta donde estoy
@@ -479,6 +493,9 @@ nnoremap <leader>tpj <cmd>:lua require'telescope'.load_extension('project')<CR><
 "-- telescope repo
 
 nnoremap <leader>trl <cmd>:lua require'telescope'.load_extension('repo')<CR><cmd>Telescope repo list<CR>
+
+"-- telescope todolist (al lista of all tags that are like kind of this)
+nnoremap <leader>tdl <cmd>:lcd %:p:h<CR><cmd>:TodoTelescope <CR>
 
 "------------------------------------- telescope ----------------------------
 
@@ -875,7 +892,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
  
 Plugin 'VundleVim/Vundle.vim'
-
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -886,6 +902,9 @@ lua require('luaplugins.plugins')
 
 " configs de plugins
 lua require('luaplugins.toggleterm')
+lua require('luaplugins.trouble')
+lua require('luaplugins.todo-comments')
+" lua require('luaplugins.dap')
 
 
 " plug = guarda los plugs en la carpeta de home/.config/nvim/plugged
