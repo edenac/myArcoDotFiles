@@ -1,6 +1,6 @@
 ### EXPORT ###
-export EDITOR='nvim'
-export VISUAL='nvim'
+export EDITOR='nano'
+export VISUAL='nano'
 export HISTCONTROL=ignoreboth:erasedups
 export PAGER='most'
 
@@ -29,14 +29,12 @@ fi
 bind "set completion-ignore-case on"
 
 ### ALIASES ###
-#nvim 
-alias nv='nvim'
 
 #list
 alias ls='ls --color=auto'
 alias la='ls -a'
 alias ll='ls -alFh'
-alias l='lsd'
+alias l='ls'
 alias l.="ls -A | egrep '^\.'"
 
 #fix obvious typo's
@@ -48,8 +46,6 @@ alias updte='sudo pacman -Syyu'
 alias updqte='sudo pacman -Syyu'
 alias upqll='paru -Syu --noconfirm'
 alias upal='paru -Syu --noconfirm'
-alias p='pacman'
-
 
 ## Colorize the grep command output for ease of use (good for log files)##
 alias grep='grep --color=auto'
@@ -62,6 +58,10 @@ alias df='df -h'
 #keyboard
 alias give-me-azerty-be="sudo localectl set-x11-keymap be"
 alias give-me-qwerty-us="sudo localectl set-x11-keymap us"
+
+#setlocale
+alias setlocale="sudo localectl set-locale LANG=en_US.UTF-8"
+alias setlocales="sudo localectl set-x11-keymap be && sudo localectl set-locale LANG=en_US.UTF-8"
 
 #pacman unlock
 alias unlock="sudo rm /var/lib/pacman/db.lck"
@@ -80,7 +80,7 @@ alias free="free -mt"
 alias wget="wget -c"
 
 #userlist
-alias userlist="cut -d: -f1 /etc/passwd"
+alias userlist="cut -d: -f1 /etc/passwd | sort"
 
 #merge new settings
 alias merge="xrdb -merge ~/.Xresources"
@@ -100,6 +100,8 @@ alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
 
 #grub update
 alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+#grub issue 08/2022
+alias install-grub-efi="sudo grub-install --target=x86_64-efi --efi-directory=/boot/efi"
 
 #add new fonts
 alias update-fc='sudo fc-cache -fv'
@@ -138,6 +140,9 @@ alias kpi='killall picom'
 #hardware info --short
 alias hw="hwinfo --short"
 
+#audio check pulseaudio or pipewire
+alias audio="pactl info | grep 'Server Name'"
+
 #skip integrity check
 alias paruskip='paru -S --mflags --skipinteg'
 alias yayskip='yay -S --mflags --skipinteg'
@@ -156,7 +161,6 @@ alias mirrorx="sudo reflector --age 6 --latest 20  --fastest 20 --threads 5 --so
 alias mirrorxx="sudo reflector --age 6 --latest 20  --fastest 20 --threads 20 --sort rate --protocol https --save /etc/pacman.d/mirrorlist"
 alias ram='rate-mirrors --allow-root --disable-comments arch | sudo tee /etc/pacman.d/mirrorlist'
 alias rams='rate-mirrors --allow-root --disable-comments --protocol https arch  | sudo tee /etc/pacman.d/mirrorlist'
-
 
 #mounting the folder Public for exchange between host and guest on virtualbox
 alias vbm="sudo /usr/local/bin/arcolinux-vbox-share"
@@ -187,6 +191,7 @@ alias riplong="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -3000 | n
 
 #iso and version used to install ArcoLinux
 alias iso="cat /etc/dev-rel | awk -F '=' '/ISO/ {print $2}'"
+alias isoo="cat /etc/dev-rel"
 
 #Cleanup orphaned packages
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
@@ -209,7 +214,7 @@ alias ngrub="sudo $EDITOR /etc/default/grub"
 alias nconfgrub="sudo $EDITOR /boot/grub/grub.cfg"
 alias nmkinitcpio="sudo $EDITOR /etc/mkinitcpio.conf"
 alias nmirrorlist="sudo $EDITOR /etc/pacman.d/mirrorlist"
-alias narcomirrorlist='sudo $EDITOR /etc/pacman.d/arcolinux-mirrorlist'
+alias narcomirrorlist="sudo $EDITOR /etc/pacman.d/arcolinux-mirrorlist"
 alias nsddm="sudo $EDITOR /etc/sddm.conf"
 alias nsddmk="sudo $EDITOR /etc/sddm.conf.d/kde_settings.conf"
 alias nfstab="sudo $EDITOR /etc/fstab"
@@ -221,6 +226,7 @@ alias nhostname="sudo $EDITOR /etc/hostname"
 alias nb="$EDITOR ~/.bashrc"
 alias nz="$EDITOR ~/.zshrc"
 alias nf="$EDITOR ~/.config/fish/config.fish"
+alias nneofetch="$EDITOR ~/.config/neofetch/config.conf"
 
 #reading logs with bat
 alias lcalamares="bat /var/log/Calamares.log"
@@ -319,7 +325,8 @@ alias ltupd="leftwm-theme update"
 alias ltupg="leftwm-theme upgrade"
 
 #arcolinux applications
-alias att="archlinux-tweak-tool"
+#att is a symbolic link now
+#alias att="archlinux-tweak-tool"
 alias adt="arcolinux-desktop-trasher"
 alias abl="arcolinux-betterlockscreen"
 alias agm="arcolinux-get-mirrors"
@@ -342,10 +349,6 @@ alias personal='cp -Rf /personal/* ~'
 [[ -f ~/.bashrc-personal ]] && . ~/.bashrc-personal
 
 # reporting tools - install when not installed
-
-# tmux
-# tmux source-file ~/.config/tmux/.tmux.conf
-# fish
 neofetch
 #screenfetch
 #alsi
@@ -360,4 +363,3 @@ neofetch
 #sysinfo-retro
 #cpufetch
 #colorscript random
-eval "$(oh-my-posh init bash --config ~/.poshthemes/negligible.omp.json)"

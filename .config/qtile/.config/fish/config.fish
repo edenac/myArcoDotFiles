@@ -1,5 +1,6 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
+# terminal
     alias l "lsd"
     alias nv "nvim"
     alias p "pacman"
@@ -8,4 +9,7 @@ if status is-interactive
     alias tl "tmux ls"
     alias tast "tmux attach-session -t"
     alias ta "tmux a"
+
+# lazygit    
+    alias lg "lazygit"
 end

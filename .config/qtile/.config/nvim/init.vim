@@ -123,7 +123,6 @@ Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
 Plug 'dense-analysis/ale' "corrector
 Plug 'sharkdp/fd' "command line completion
 Plug 'nvim-lua/plenary.nvim' "lua recognize too required
-Plug 'majutsushi/tagbar'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
 Plug 'folke/todo-comments.nvim'
@@ -149,20 +148,8 @@ Plug 'windwp/nvim-spectre'
 "IDE
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "autocompletado de lenguajes de programacion
 
-" java 
-"TODO: crear java ide con coc-java , coc-java-debug , lsp , jdt/jdtls ,
-"dap/dapui , vimspector??? , eclipse/eclims native??? , para debug y para
-"build spring-springbot y seria todo , hecharme una vuelta por spacevim antes
-"para ver que se cuece y ver si es una manera mas rapida y especifica (?) 
-   
 " rest = soapui o postman = para checar el backend de las peticiones sin UI 
 " requiere packer.nvim  https://github.com/rest-nvim/rest.nvim lua maybe?
-
-" Plug 'mfussenegger/nvim-jdtls'    
-" Plug 'mfussenegger/nvim-dap' "debuger
-" Plug 'rcarriga/nvim-dap-ui'
-" Plug 'rcarriga/neotest'
-
 
 " Plug 'https://github.com/lifepillar/pgsql.vim' " PSQL Pluging needs :SQLSetType pgsql.vim
 " Plug 'http://github.com/tpope/vim-surround' " Surrounding ysw)
@@ -225,6 +212,7 @@ let g:startify_bookmarks = [
     " \{ 'f': '~/aqui' },ir agregando rutas que vaya poniendo en bookmark
 "-- startify --
 "-----------------------coc-----------------------------------
+
 " Required:
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -258,6 +246,7 @@ endfunction
 noremap <silent><expr> <c-space> coc#refresh()
 
 "-----------------------coc-----------------------------------
+
 
 "-------shortcuts customized without lider--------------------
 
@@ -497,6 +486,11 @@ nnoremap <leader>trl <cmd>:lua require'telescope'.load_extension('repo')<CR><cmd
 "-- telescope todolist (al lista of all tags that are like kind of this)
 nnoremap <leader>tdl <cmd>:lcd %:p:h<CR><cmd>:TodoTelescope <CR>
 
+"abre una ventana telescope con las notificaciones que me han salido pudiendo
+"elegir una y volviendola a mostrar 
+noremap <leader>tnt <cmd>:Telescope notify <CR>
+"muestra log de notificaciones
+nmap <leader>nl <cmd>:Notifications <CR>
 "------------------------------------- telescope ----------------------------
 
 
@@ -755,29 +749,6 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 noremap <C-h> <C-w>h
-"-------------------nerdcommenter rules----------------------------------------
-"reglas del nerdcommenter con lider asignado como ,(checar documentation para
-"ver los shortcuts)
-" let g:NERDCreateDefaultMappings = 1
-" Add spaces after comment delimiters by default
-" let g:NERDSpaceDelims = 1
-" Use compact syntax for prettified multi-line comments
-" let g:NERDCompactSexyComs = 1
-" Align line-wise comment delimiters flush left instead of following code
-" indentation
-" let g:NERDDefaultAlign = 'left'
-" Set a language to use its alternate delimiters by default
-" let g:NERDAltDelims_java = 1
-" Add your own custom formats or override the defaults
-" let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
-" Allow commenting and inverting empty lines (useful when commenting a
-" region)
-" let g:NERDCommentEmptyLines = 1
-" Enable trimming of trailing whitespace when uncommenting
-" let g:NERDTrimTrailingWhitespace = 1
-" Enable NERDCommenterToggle to check all selected lines is commented or not 
-" let g:NERDToggleCheckAllLines = 1
-"-------------------nerdcommenter rules----------------------------------------
 
 "---------------------------------Rules----------------------------------------
 
@@ -904,7 +875,14 @@ lua require('luaplugins.plugins')
 lua require('luaplugins.toggleterm')
 lua require('luaplugins.trouble')
 lua require('luaplugins.todo-comments')
+" lua require('luaplugins.nvim-notify')
+lua require('luaplugins.java')
 " lua require('luaplugins.dap')
+
+lua require('luaplugins.py')
+
+" lua ->settings
+lua require('settings.settings')
 
 
 " plug = guarda los plugs en la carpeta de home/.config/nvim/plugged
@@ -915,3 +893,4 @@ lua require('luaplugins.todo-comments')
 " la invocacion de lua de aqui arriba ahi mismo esta el archivo que instala
 " packer en donde se instalan las extensiones con su sintaxis, solo que al ser
 " mucha la configuracion la prefiero tener guardada en aquel archivo
+" notify-coc
