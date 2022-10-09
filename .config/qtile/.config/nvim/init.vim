@@ -1,4 +1,4 @@
-"--------------------setting---------------------------------
+""--------------------setting---------------------------------
 let g:skip_defaults_vim = 1
 :set number
 :set relativenumber
@@ -41,9 +41,9 @@ let g:skip_defaults_vim = 1
 :autocmd InsertEnter,InsertLeave * set cul!
 set matchpairs+=<:>
 
-"--------------------setting--------------------------------
+""--------------------setting--------------------------------
 
-"------funciones para la inastalacion de plugin-------------
+""------funciones para la inastalacion de plugin-------------
 
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 if has('win32')&&!has('win64')
@@ -69,23 +69,12 @@ if !filereadable(vimplug_exists)
   autocmd VimEnter * PlugInstall
 endif
 
-"------funciones para la inastalacion de plugin-------------
+""------funciones para la inastalacion de plugin-------------
 
-" --------------------PLUGS---------------------------------
+"" --------------------PLUGS---------------------------------
 
 " Required:
 call plug#begin(expand('~/.config/nvim/plugged'))
-"*****************************************************************************
-"" Plug install packages
-"*****************************************************************************
-"java config
-"ir dejando bien seteado para java 
-" ir limpiando de plugins comentandolas y clean 
-" comentar todo y solo ir dejando lo que que vaya ir ocupando checar los
-" plugins que tengo escritos y los que neceisto para empezar a hacer java aqui
-
-
-
 
 " git
 Plug 'tpope/vim-fugitive'
@@ -115,7 +104,6 @@ Plug 'https://github.com/ap/vim-css-color' " CSS Color Preview
 Plug 'Yggdroot/indentLine'
 Plug 'https://github.com/tpope/vim-commentary' " For Commenting gcc & gc
 Plug 'https://github.com/terryma/vim-multiple-cursors' " CTRL + N for multiple cursors:
-Plug 'https://github.com/PhilRunninger/nerdtree-visual-selection'
 Plug 'wesQ3/vim-windowswap'
 Plug 'rcarriga/nvim-notify'
 Plug 'Raimondi/delimitMate'
@@ -123,7 +111,6 @@ Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
 Plug 'dense-analysis/ale' "corrector
 Plug 'sharkdp/fd' "command line completion
 Plug 'nvim-lua/plenary.nvim' "lua recognize too required
-Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
 Plug 'folke/todo-comments.nvim'
 
@@ -133,10 +120,11 @@ Plug 'vim-scripts/grep.vim'
 Plug 'https://github.com/preservim/tagbar' " Tagbar for code navigation
 Plug 'easymotion/vim-easymotion' "easymotion = vim sneak
 Plug 'scrooloose/nerdtree'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'https://github.com/PhilRunninger/nerdtree-buffer-ops'
+Plug 'https://github.com/PhilRunninger/nerdtree-visual-selection'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'ThePrimeagen/harpoon'
 Plug 'mhinz/vim-startify'
@@ -155,10 +143,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'} "autocompletado de lenguajes de 
 " Plug 'http://github.com/tpope/vim-surround' " Surrounding ysw)
 
 if isdirectory('/usr/local/opt/fzf')
-  Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+ Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 else
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-  Plug 'junegunn/fzf.vim'
+ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+ Plug 'junegunn/fzf.vim'
 endif
 let g:make = 'gmake'
 if exists('make')
@@ -166,11 +154,11 @@ if exists('make')
 endif
 Plug 'Shougo/vimproc.vim', {'do': g:make}
 
-"" Vim-Session
+" Vim-Session
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
-"" Snippets
+" Snippets
 "Plug 'SirVer/ultisnips' ver si de alguna manera puede ser compatible con coc
 "por lo del tab
 Plug 'honza/vim-snippets'
@@ -208,10 +196,10 @@ let g:startify_bookmarks = [
     \{ 's': '~/tujak' },
     \]
 
-    " \{ 'd': '~/aqui' },ir agregando rutas puestas en bookmark
-    " \{ 'f': '~/aqui' },ir agregando rutas que vaya poniendo en bookmark
-"-- startify --
-"-----------------------coc-----------------------------------
+   " \{ 'd': '~/aqui' },ir agregando rutas puestas en bookmark
+   " \{ 'f': '~/aqui' },ir agregando rutas que vaya poniendo en bookmark
+""-- startify --
+""-----------------------coc-----------------------------------
 
 " Required:
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -326,13 +314,13 @@ noremap <leader>nb :Bookmark<CR>
 "borra todos los bookmarks
 " noremap <leader>nab :Bookmark<CR>
 
-"-- startif --
+""-- startify --
 nmap<leader>st :Startify<CR>
 nmap<leader>ss :SSave<CR>
 nmap<leader>sd :SDelete<CR>
 nmap<leader>sl :SLoad<CR>
 nmap<leader>sc :SClose<CR>
-"-- startif --
+""-- startify --
 
 "-- spectre --
 
@@ -382,9 +370,9 @@ filetype plugin indent on
 " Map leader to ,
 let mapleader=','
 if exists('$SHELL')
-    set shell=$SHELL
+   set shell=$SHELL
 else
-    set shell=/bin/sh
+   set shell=/bin/sh
 endif
 
 "borrar busqueda para desmarcar la palabra resaltada
@@ -553,22 +541,18 @@ if has("gui_running")
     set transparency=7
   endif
 else
-  let g:CSApprox_loaded = 1
+ let g:CSApprox_loaded = 1
 
-  " IndentLine
-  let g:indentLine_enabled = 1
-  let g:indentLine_concealcursor = 0
-  let g:indentLine_char = '┆'
-  let g:indentLine_faster = 1
+   " IndentLine
+ let g:indentLine_enabled = 1
+ " let g:indentLine_concealcursor = 0
+ let g:indentLine_char = '┆'
+ let g:indentLine_faster = 1
 
 "-----------------nerdtree rules-----------------
-  " let g:NERDTreeDirArrowExpandabld="+"
-  " let g:NERDTreeDirArrowCollapsible="~"
   let g:NERDTreeGitStatusUseNerdFonts = 1 " you should install nerdfonts by yourself. default: 0"
   let g:NERDTreeGitStatusUntrackedFilesMode = 'all' " a heavy feature too. default: normal
   let g:NERDTreeGitStatusBinPath ='/your/file/path' " default: git (auto find in path)
-  " let g:NERDTreeGitStatusConcealBrackets = 1 " default: 0
-  " let g:NERDTreeHidden=0 " para no mostrar los archivos ocultos
   let NERDTreeMinimalUI=1    " Start NERDTree in minimal UI mode (No help lines)"
   let NERDTreeShowBookmarks=1   " Show NERDTree bookmarks
 
@@ -585,24 +569,67 @@ else
                    \ 'Unknown'   :'?',
                    \}
 
-         " let g:NERDTreeDisableFileExtensionHighlight = 1
-         " let g:NERDTreeDisableExactMatchHighlight = 1
-         " let g:NERDTreeDisablePatternMatchHighlight = 1
-         " let g:NERDTreeFileExtensionHighlightFullName = 1
-         " let g:NERDTreeExactMatchHighlightFullName = 1
-         " let g:NERDTreePatternMatchHighlightFullName=1
-         " let g:NERDTreeHighlightFolders = 1
-         " let g:NERDTreeHighlightFoldersFullName=1 
-         " let g:NERDTreeExtensionHighlightColor = {}
+
+" nerdtree higlights
+" let g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
+" let g:WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1
+" let g:NERDTreeDisableFileExtensionHighlight = 1
+" let g:NERDTreeDisableExactMatchHighlight = 1
+" let g:NERDTreeDisablePatternMatchHighlight = 1
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
+let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
+" you can add these colors to your .vimrc to help customizing
+let s:brown = "905532"
+let s:aqua =  "3AFFDB"
+let s:blue = "689FB6"
+let s:darkBlue = "44788E"
+let s:purple = "834F79"
+let s:lightPurple = "834F79"
+let s:red = "AE403F"
+let s:beige = "F5C06F"
+let s:yellow = "F09F17"
+let s:orange = "D4843E"
+let s:darkOrange = "F16529"
+let s:pink = "CB6F6F"
+let s:salmon = "EE6E73"
+let s:green = "8FAA54"
+let s:lightGreen = "31B53E"
+let s:white = "FFFFFF"
+let s:rspec_red = 'FE405F'
+let s:git_orange = 'F54D27'
+
+let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreeExtensionHighlightColor['css'] = s:blue " sets the color of css files to blue
+
+let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange " sets the color for .gitignore files
+
+let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets the color for files ending with _spec.rb
+
+let g:WebDevIconsDefaultFolderSymbolColor = s:beige " sets the color for folders that did not match any rule
+let g:WebDevIconsDefaultFileSymbolColor = s:blue " sets the color for files that did not match any rule
+let g:NERDTreeLimitedSyntax = 1
+" let g:NERDTreeSyntaxDisableDefaultExactMatches = 1
+" let g:NERDTreeSyntaxDisableDefaultPatternMatches = 1
+let g:NERDTreeHighlightCursorline = 0
+" let g:NERDTreeSyntaxDisableDefaultExtensions = 1 " arregla el pedo de nerdtree
+
+
+" nerdtree higlights
+
 "-----------------nerdtree rules-----------------
 
-  if $COLORTERM == 'gnome-terminal'
-    set term=gnome-256color
-  else
-    if $TERM == 'xterm'
-      set term=xterm-256color
-    endif
-  endif
+ if $COLORTERM == 'gnome-terminal'
+   set term=gnome-256color
+ else
+   if $TERM == 'xterm'
+     set term=xterm-256color
+   endif
+ endif
   
 endif
 
@@ -689,7 +716,7 @@ augroup vimrc-make-cmake
   autocmd BufNewFile,BufRead CMakeLists.txt setlocal filetype=cmake
 augroup END
 
-set autoread
+"set autoread
 
 " fzf.vim
 set wildmode=list:longest,list:full
@@ -709,7 +736,7 @@ if executable('rg')
   command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 endif
 
-cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+" "cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 " snippets
 " let g:UltiSnipsExpandTrigger="<tab>"
 " let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -770,11 +797,11 @@ augroup end
 let g:scrollbar_right_offset = 1
 let g:scrollbar_width = 1
 
-  let g:scrollbar_shape = {
-    \ 'head': '▲',
-    \ 'body': '█',
-    \ 'tail': '▼',
-    \ }
+ let g:scrollbar_shape = {
+   \ 'head': '▲',
+   \ 'body': '█',
+   \ 'tail': '▼',
+   \ }
 
 "-------------------------------------scrollbar -------------------------------
 
@@ -824,37 +851,37 @@ else
 endif
 
 " air-line
- let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 1
 
- if !exists('g:airline_symbols')
-     let g:airline_symbols = {}
-     endif
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+    endif
 
      " unicode symbols
-     let g:airline_left_sep = '»'
-     let g:airline_left_sep = '▶'
-     let g:airline_right_sep = '«'
-     let g:airline_right_sep = '◀'
-     let g:airline_symbols.linenr = '␊'
-     let g:airline_symbols.linenr = '␤'
-     let g:airline_symbols.linenr = '¶'
-     let g:airline_symbols.branch = '⎇'
-     let g:airline_symbols.paste = 'ρ'
-     let g:airline_symbols.paste = 'Þ'
-     let g:airline_symbols.paste = '∥'
-     let g:airline_symbols.whitespace = 'Ξ'
+    let g:airline_left_sep = '»'
+    let g:airline_left_sep = '▶'
+    let g:airline_right_sep = '«'
+    let g:airline_right_sep = '◀'
+    let g:airline_symbols.linenr = '␊'
+    let g:airline_symbols.linenr = '␤'
+    let g:airline_symbols.linenr = '¶'
+    let g:airline_symbols.branch = '⎇'
+    let g:airline_symbols.paste = 'ρ'
+    let g:airline_symbols.paste = 'Þ'
+    let g:airline_symbols.paste = '∥'
+    let g:airline_symbols.whitespace = 'Ξ'
 
      " airline symbols
-     let g:airline_left_sep = ''
-     let g:airline_left_alt_sep = ''
-     let g:airline_right_sep = ''
-     let g:airline_right_alt_sep = ''
-     let g:airline_symbols.branch = ''
-     let g:airline_symbols.readonly = ''
-     let g:airline_symbols.linenr = ''
+    let g:airline_left_sep = ''
+    let g:airline_left_alt_sep = ''
+    let g:airline_right_sep = ''
+    let g:airline_right_alt_sep = ''
+    let g:airline_symbols.branch = ''
+    let g:airline_symbols.readonly = ''
+    let g:airline_symbols.linenr = ''
 
 "----------------------Marcos visuales-----------------------------------------
-"
+
 "vundle
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -868,20 +895,16 @@ filetype plugin indent on    " required
 
 
 
-" lua -> packer
+ " lua -> packer
 lua require('luaplugins.plugins')
 
-" configs de plugins
+ " configs de plugins
 lua require('luaplugins.toggleterm')
 lua require('luaplugins.trouble')
 lua require('luaplugins.todo-comments')
-" lua require('luaplugins.nvim-notify')
-lua require('luaplugins.java')
-" lua require('luaplugins.dap')
+lua require('luaplugins.nvim-notify')
 
-lua require('luaplugins.py')
-
-" lua ->settings
+ " lua ->settings
 lua require('settings.settings')
 
 

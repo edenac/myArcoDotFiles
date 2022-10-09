@@ -1,5 +1,5 @@
 configuration {
-modi: "window,drun,ssh,run,filebrowser,file-browser-extended,calc,emoji";
+modi: "window,drun,ssh,run,filebrowser,file-browser-extended,emoji";
 display-drun: "Apps";
 display-file-browser-extended: "files";
 
@@ -8,7 +8,7 @@ icon-theme: "Papirus";
 separator-style: "dash";
 hide-scrollbar: false;
 scrollbar-width: 8;
-
+font: "Hack 12";
 
 
 
@@ -18,7 +18,6 @@ scrollbar-width: 8;
 /*  width: 50;*/
 /*  lines: 15;*/
 /*  columns: 2;*/
-/*  font: "mono 12";*/
 /*  bw: 1;*/
 /*  location: 0;*/
 /*  padding: 5;*/

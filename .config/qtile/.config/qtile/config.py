@@ -1,30 +1,3 @@
-# Copyright (c) 2010 Aldo Cortesi
-# Copyright (c) 2010, 2014 dequis
-# Copyright (c) 2012 Randall Ma
-# Copyright (c) 2012-2014 Tycho Andersen
-# Copyright (c) 2012 Craig Barnes
-# Copyright (c) 2013 horsik
-# Copyright (c) 2013 Tao Sauvage
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-
-
 import os
 import re
 import socket
@@ -34,7 +7,6 @@ from libqtile import layout, bar, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, Rule
 from libqtile.command import lazy
 from libqtile.widget import Spacer
-#import arcobattery
 
 #mod4 or mod = super key
 mod = "mod4"
@@ -57,9 +29,25 @@ def window_to_next_group(qtile):
 
 keys = [
 
-# Most of our keybindings are in sxhkd file - except these
+#xfce4-terminal dropdown
+    Key([mod], "F12", lazy.spawn('xfce4-terminal --drop-down')),
 
+    # minimize & maximize windows
+    #togglear maximizar y minizar
+    Key([mod], "m", lazy.window.toggle_maximize(), desc="Toggle maximize"), 
+    # Key([mod], "n", lazy.window.toggle_minimize(), desc="Toggle minimize"), 
+
+    #minimizar
+    Key([mod, "shift"], "n", lazy.spawn("Qminimize -m")), # -m to minimize
+
+    #maximizar a lo normal (osea solo si esta minimizado se abre ventan de rofi para escoger)
+    Key([mod, "shift"], "m", lazy.spawn('Qminimize -u'), desc="Minimize window"), # - u to show the rofi menu
+    #Arreglar el minimizar de vuelta para traerlo cuando esté minimizado cuando me acuerde y o tenga tiempo
+    #es un error comun que tardan en dar solucion , cuando me acuerde buscar el proyecto con el issue fixeado
 # SUPER + FUNCTION KEYS
+
+
+# Most of our keybindings are in sxhkd file - except these
 
     Key([mod], "f", lazy.window.toggle_fullscreen()),
     Key([mod], "q", lazy.window.kill()),
@@ -72,7 +60,7 @@ keys = [
 
 
 # QTILE LAYOUT KEYS
-    Key([mod], "n", lazy.layout.normalize()),
+    # Key([mod], "n", lazy.layout.normalize()),
     Key([mod], "space", lazy.next_layout()),
 
 # CHANGE FOCUS
@@ -157,6 +145,11 @@ keys = [
 # TOGGLE FLOATING LAYOUT
     Key([mod, "shift"], "space", lazy.window.toggle_floating()),
 
+        # mover ventana ws x ws pendiente ahcer que se mueva la ventana a la siguiente pantalla moviendome con ella tratar de hacerlo algún día que me acuerde
+        # Key([mod, "mod2"], "l", window_to_next_screen()),
+        # Key([mod, "shift"], "Right",window_to_next_group()),
+        # Key([mod, "control"], "Right",window_to_next_group(),lazy.screen.next_group()),
+        # Key('M-S-<Right>', window_to_next_group()),
     ]
 
 def window_to_previous_screen(qtile, switch_group=False, switch_screen=False):
@@ -184,16 +177,16 @@ keys.extend([
 groups = []
 
 # FOR QWERTY KEYBOARDS
-group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0",]
+group_names = ["1", "2", "3", "4","5",]
 
 # FOR AZERTY KEYBOARDS
 #group_names = ["ampersand", "eacute", "quotedbl", "apostrophe", "parenleft", "section", "egrave", "exclam", "ccedilla", "agrave",]
 
 #group_labels = ["1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 ", "8 ", "9 ", "0",]
-group_labels = ["", "", "", "", "", "", "", "", "", "",]
+group_labels = ["", "", "", "","",]
 #group_labels = ["Web", "Edit/chat", "Image", "Gimp", "Meld", "Video", "Vb", "Files", "Mail", "Music",]
 
-group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall",]
+group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall","monadtall"]
 #group_layouts = ["monadtall", "matrix", "monadtall", "bsp", "monadtall", "matrix", "monadtall", "bsp", "monadtall", "monadtall",]
 
 for i in range(len(group_names)):
@@ -211,14 +204,20 @@ for i in groups:
         Key([mod], i.name, lazy.group[i.name].toscreen()),
         Key([mod], "Tab", lazy.screen.next_group()),
         Key([mod, "shift" ], "Tab", lazy.screen.prev_group()),
-        Key(["mod1"], "Tab", lazy.screen.next_group()),
-        Key(["mod1", "shift"], "Tab", lazy.screen.prev_group()),
+        Key([mod, "mod1"], "h", lazy.screen.prev_group()),
+        Key([mod, "mod1"], "l", lazy.screen.next_group()),
+        Key([mod], "Left", lazy.screen.prev_group()),
+        Key([mod], "Right", lazy.screen.next_group()),
+        #Key(["mod1"], "Tab", lazy.screen.next_group()),
+        #Key(["mod1", "shift"], "Tab", lazy.screen.prev_group()),
 
 # MOVE WINDOW TO SELECTED WORKSPACE 1-10 AND STAY ON WORKSPACE
-        #Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
+        Key([mod, "mod1",], i.name, lazy.window.togroup(i.name)),
 # MOVE WINDOW TO SELECTED WORKSPACE 1-10 AND FOLLOW MOVED WINDOW TO WORKSPACE
         Key([mod, "shift"], i.name, lazy.window.togroup(i.name) , lazy.group[i.name].toscreen()),
+
     ])
+
 
 
 def init_layout_theme():
@@ -275,21 +274,21 @@ def init_widgets_list():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list = [
                widget.GroupBox(font="FontAwesome",
-                        fontsize = 16,
-                        margin_y = -1,
+                        fontsize = 15,
+                        margin_y = 3,
                         margin_x = 0,
                         padding_y = 6,
                         padding_x = 5,
                         borderwidth = 0,
                         disable_drag = True,
-                        active = colors[9],
-                        inactive = colors[5],
+                        active = colors[5],
+                        inactive = colors[9],
                         rounded = False,
                         highlight_method = "text",
-                        this_current_screen_border = colors[8],
+                        this_current_screen_border = colors[7],
                         foreground = colors[2],
                         background = colors[1]
-                        ),
+                        ),                
                widget.Sep(
                         linewidth = 1,
                         padding = 10,
@@ -312,124 +311,102 @@ def init_widgets_list():
                         foreground = colors[5],
                         background = colors[1],
                         ),
-               # widget.Net(
-               #          font="Noto Sans",
-               #          fontsize=12,
-               #          interface="enp0s31f6",
-               #          foreground=colors[2],
-               #          background=colors[1],
-               #          padding = 0,
-               #          ),
-               # widget.Sep(
-               #          linewidth = 1,
-               #          padding = 10,
-               #          foreground = colors[2],
-               #          background = colors[1]
-               #          ),
-               # widget.NetGraph(
-               #          font="Noto Sans",
-               #          fontsize=12,
-               #          bandwidth="down",
-               #          interface="auto",
-               #          fill_color = colors[8],
-               #          foreground=colors[2],
-               #          background=colors[1],
-               #          graph_color = colors[8],
-               #          border_color = colors[2],
-               #          padding = 0,
-               #          border_width = 1,
-               #          line_width = 1,
-               #          ),
-               # widget.Sep(
-               #          linewidth = 1,
-               #          padding = 10,
-               #          foreground = colors[2],
-               #          background = colors[1]
-               #          ),
-               # # do not activate in Virtualbox - will break qtile
-               # widget.ThermalSensor(
-               #          foreground = colors[5],
-               #          foreground_alert = colors[6],
-               #          background = colors[1],
-               #          metric = True,
-               #          padding = 3,
-               #          threshold = 80
-               #          ),
-               # # battery option 1  ArcoLinux Horizontal icons do not forget to import arcobattery at the top
-               # widget.Sep(
-               #          linewidth = 1,
-               #          padding = 10,
-               #          foreground = colors[2],
-               #          background = colors[1]
-               #          ),
-               # arcobattery.BatteryIcon(
-               #          padding=0,
-               #          scale=0.7,
-               #          y_poss=2,
-               #          theme_path=home + "/.config/qtile/icons/battery_icons_horiz",
-               #          update_interval = 5,
-               #          background = colors[1]
-               #          ),
-               # # battery option 2  from Qtile
-               # widget.Sep(
-               #          linewidth = 1,
-               #          padding = 10,
-               #          foreground = colors[2],
-               #          background = colors[1]
-               #          ),
-               # widget.Battery(
-               #          font="Noto Sans",
-               #          update_interval = 10,
-               #          fontsize = 12,
-               #          foreground = colors[5],
-               #          background = colors[1],
-	           #          ),
-               # widget.TextBox(
-               #          font="FontAwesome",
-               #          text="  ",
-               #          foreground=colors[6],
-               #          background=colors[1],
-               #          padding = 0,
-               #          fontsize=16
-               #          ),
-               # widget.CPUGraph(
-               #          border_color = colors[2],
-               #          fill_color = colors[8],
-               #          graph_color = colors[8],
-               #          background=colors[1],
-               #          border_width = 1,
-               #          line_width = 1,
-               #          core = "all",
-               #          type = "box"
-               #          ),
-               # widget.Sep(
-               #          linewidth = 1,
-               #          padding = 10,
-               #          foreground = colors[2],
-               #          background = colors[1]
-               #          ),
-               # widget.TextBox(
-               #          font="FontAwesome",
-               #          text="  ",
-               #          foreground=colors[4],
-               #          background=colors[1],
-               #          padding = 0,
-               #          fontsize=16
-               #          ),
-               # widget.Memory(
-               #          font="Noto Sans",
-               #          format = '{MemUsed}M/{MemTotal}M',
-               #          update_interval = 1,
-               #          fontsize = 12,
-               #          foreground = colors[5],
-               #          background = colors[1],
-               #         ),
-               # widget.Sep(
-               #          linewidth = 1,
-               #          padding = 10,
-               #          foreground = colors[2],
-               #          background = colors[1]
-               #          ),
+               widget.TextBox(
+                        font="NerdFonts",
+                        text=" ",
+                        foreground=colors[7],
+                        background=colors[1],
+                        padding = 0,
+                        fontsize=20
+                        ),
+               widget.Net(
+                        font="Noto Sans",
+                        fontsize=12,
+                        foreground=colors[2],
+                        background=colors[1],
+                        padding = 0,
+                        ),
+                widget.NetGraph(
+                         font="Noto Sans",
+                         fontsize=12,
+                         bandwidth="down",
+                         interface="auto",
+                         fill_color = colors[8],
+                         foreground=colors[2],
+                         background=colors[1],
+                         graph_color = colors[8],
+                         border_color = colors[2],
+                         padding = 0,
+                         border_width = 1,
+                         line_width = 1,
+                         ),
+                widget.Sep(
+                         linewidth = 1,
+                         padding = 10,
+                         foreground = colors[2],
+                         background = colors[1]
+                         ),
+               widget.TextBox(
+                        font="NerdFonts",
+                        text=" ",
+                        foreground=colors[7],
+                        background=colors[1],
+                        padding = 0,
+                        fontsize=20
+                        ),
+                widget.CPU(
+                        format = '{load_percent}%'
+                        ),
+               widget.TextBox(
+                        font="FontAwesome",
+                        text=" ",
+                        foreground=colors[7],
+                        background=colors[1],
+                        padding = 0,
+                        fontsize=12
+                        ),
+               widget.Memory(
+                        font="Noto Sans",
+                        measure_mem='G',
+                        update_interval = 1,
+                        fontsize = 12,
+                        foreground = colors[5],
+                        background = colors[1],
+                       ),
+               widget.TextBox(
+                        font="FontAwesome",
+                        text="  ",
+                        foreground=colors[8],
+                        background=colors[1],
+                        padding = 0,
+                        fontsize=15
+                        ),
+                widget.DF(
+                visible_on_warn=False,
+                format = '{uf}{m}-{r:.0f}%'
+                        ),
+                widget.TextBox(
+                         font="FontAwesome",
+                         text="  ",
+                         foreground=colors[6],
+                         background=colors[1],
+                         padding = 0,
+                         fontsize=15
+                         ),
+                widget.ThermalSensor(
+                         foreground = colors[5],
+                         foreground_alert = colors[6],
+                         background = colors[1],
+                         metric = True,
+                         padding = 3,
+                         threshold = 80
+                         ),
+               widget.Sep(
+                        linewidth = 1,
+                        padding = 10,
+                        foreground = colors[2],
+                        background = colors[1]
+                        ),
                widget.TextBox(
                         font="FontAwesome",
                         text="  ",
@@ -442,14 +419,39 @@ def init_widgets_list():
                         foreground = colors[5],
                         background = colors[1],
                         fontsize = 12,
-                        format="%Y-%m-%d %H:%M"
+                        format="%d/%m/%y"
                         ),
-               # widget.Sep(
-               #          linewidth = 1,
-               #          padding = 10,
-               #          foreground = colors[2],
-               #          background = colors[1]
-               #          ),
+               widget.TextBox(
+                        font="FontAwesome",
+                        text="  ",
+                        foreground=colors[3],
+                        background=colors[1],
+                        padding = 0,
+                        fontsize=16
+                        ),
+               widget.Clock(
+                        foreground = colors[5],
+                        background = colors[1],
+                        fontsize = 12,
+                        format="%H:%M"
+                        ),
+               widget.TextBox(
+                        font="FontAwesome",
+                        text="  ",
+                        foreground=colors[5],
+                        background=colors[1],
+                        padding = 0,
+                        fontsize=16
+                        ),
+               widget.OpenWeather(
+                       location='Altamira, MX'
+                       ),
+               widget.Sep(
+                        linewidth = 1,
+                        padding = 10,
+                        foreground = colors[2],
+                        background = colors[1]
+                        ),
                widget.Systray(
                         background=colors[1],
                         icon_size=20,
@@ -472,6 +474,11 @@ def init_widgets_screen2():
 widgets_screen1 = init_widgets_screen1()
 widgets_screen2 = init_widgets_screen2()
 
+### tratando de hacer el dock ###
+# def bottom_bar():
+#     return [Screen(bottom=bar.Bar(widgets=init_widgets_screen1(), size=26, opacity=0.8)),] 
+# screens = bottom_bar()
+### tratando de ahcer el dock ###
 
 def init_screens():
     return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=26, opacity=0.8)),
@@ -490,7 +497,7 @@ mouse = [
 dgroups_key_binder = None
 dgroups_app_rules = []
 
-# ASSIGN APPLICATIONS TO A SPECIFIC GROUPNAME
+# ASSIGN APPLICATIONS TO A SPECIFIC GROUPNAME como para hacer un dash y tenerlo en menu (la idea es solo usar kb)
 # BEGIN
 
 #########################################################
@@ -554,7 +561,6 @@ def set_floating(window):
 
 floating_types = ["notification", "toolbar", "splash", "dialog"]
 
-
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
@@ -589,3 +595,4 @@ auto_fullscreen = True
 focus_on_window_activation = "focus" # or smart
 
 wmname = "LG3D"
+

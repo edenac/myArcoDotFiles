@@ -41,10 +41,10 @@ return packer.startup(function(use)
   require("toggleterm").setup()
   end}
   use 'rcarriga/nvim-notify'
-  use 'mfussenegger/nvim-jdtls'
+  -- use 'mfussenegger/nvim-jdtls'
   -- use { 'kabouzeid/nvim-lspinstall', requires = 'neovim/nvim-lspconfig' }
   -- use { 'mfussenegger/nvim-dap' }
-  use 'neovim/nvim-lspconfig'
+  -- use 'neovim/nvim-lspconfig'
   use {
   "nvim-neotest/neotest",
   requires = {
@@ -53,6 +53,8 @@ return packer.startup(function(use)
     "antoinemadec/FixCursorHold.nvim"
       }
     }
+
+
   if PACKER_BOOTSTRAP then
     require('packer').sync()
   end

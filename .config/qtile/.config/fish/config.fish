@@ -12,4 +12,13 @@ if status is-interactive
 
 # lazygit    
     alias lg "lazygit"
+
+# bashrc
+    alias update='sudo pacman -Syyu'
+    alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
+    alias update-fc='sudo fc-cache -fv' # to font install 
+    alias sysfailed="systemctl list-units --failed"
+    alias bls="betterlockscreen -u /usr/share/backgrounds/arcolinux/"
+#   alias upclean= 'sudo pacman -Syyu --nocofirm --needed ; sudo pacman -Rns $(pacman-Qtdq) --noconfirm --needed' 
+
 end

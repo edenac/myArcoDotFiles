@@ -1,4 +1,0 @@
-pane	8	0	1	:*	0	~/.tmux.conf	:/home/edenac	0	python	:/usr/bin/python -O /usr/bin/ranger
-pane	8	0	1	:*	1	~	:/home/edenac	1	fish	:
-window	8	0	:fish	1	:*	9ac6,211x56,0,0{105x56,0,0,21,105x56,106,0,22}	:
-state	8	
