@@ -19,6 +19,7 @@ if status is-interactive
     alias update-fc='sudo fc-cache -fv' # to font install 
     alias sysfailed="systemctl list-units --failed"
     alias bls="betterlockscreen -u /usr/share/backgrounds/arcolinux/"
+    alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 #   alias upclean= 'sudo pacman -Syyu --nocofirm --needed ; sudo pacman -Rns $(pacman-Qtdq) --noconfirm --needed' 
 
 end
