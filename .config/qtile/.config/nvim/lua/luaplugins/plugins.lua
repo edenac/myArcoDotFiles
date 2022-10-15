@@ -55,6 +55,8 @@ return packer.startup(function(use)
     }
 
 
+  -- use { "mfussenegger/nvim-jdtls", ft = { "java" }}
+
   if PACKER_BOOTSTRAP then
     require('packer').sync()
   end

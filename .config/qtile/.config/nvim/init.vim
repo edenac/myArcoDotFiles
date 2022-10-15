@@ -1,4 +1,4 @@
-""--------------------setting---------------------------------
+"--------------------setting---------------------------------
 let g:skip_defaults_vim = 1
 :set number
 :set relativenumber
@@ -41,9 +41,9 @@ let g:skip_defaults_vim = 1
 :autocmd InsertEnter,InsertLeave * set cul!
 set matchpairs+=<:>
 
-""--------------------setting--------------------------------
+"--------------------setting--------------------------------
 
-""------funciones para la inastalacion de plugin-------------
+"------funciones para la inastalacion de plugin-------------
 
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 if has('win32')&&!has('win64')
@@ -69,9 +69,9 @@ if !filereadable(vimplug_exists)
   autocmd VimEnter * PlugInstall
 endif
 
-""------funciones para la inastalacion de plugin-------------
+"------funciones para la inastalacion de plugin-------------
 
-"" --------------------PLUGS---------------------------------
+" --------------------PLUGS---------------------------------
 
 " Required:
 call plug#begin(expand('~/.config/nvim/plugged'))
@@ -93,12 +93,18 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} "hightlighting
 Plug 'camspiers/animate.vim'
 Plug 'camspiers/lens.vim'
 Plug 'antoinemadec/FixCursorHold.nvim'
+Plug 'dracula/vim'
+
 
 " web
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'vim-scripts/CSApprox'
 Plug 'editor-bootstrap/vim-bootstrap-updater'
 Plug 'https://github.com/ap/vim-css-color' " CSS Color Preview
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'plasticboy/vim-markdown'
+" Plug 'phpactor/phpactor', {'for': 'php', 'tag': '*', 'do': 'composer install --no-dev -o'}
 
 "Vim tools
 Plug 'Yggdroot/indentLine'
@@ -136,6 +142,16 @@ Plug 'windwp/nvim-spectre'
 "IDE
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "autocompletado de lenguajes de programacion
 
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'williamboman/nvim-lsp-installer'
+Plug 'hrsh7th/nvim-cmp' 
+Plug 'mfussenegger/nvim-jdtls'
+Plug 'puremourning/vimspector'
+" Plug 'artur-shaik/jc.nvim'
+
+
+
 " rest = soapui o postman = para checar el backend de las peticiones sin UI 
 " requiere packer.nvim  https://github.com/rest-nvim/rest.nvim lua maybe?
 
@@ -171,6 +187,36 @@ endif
 
 call plug#end()
 
+" Auto Commands py format % inconsistences with scss
+augroup auto_commands
+    autocmd BufWrite *.py call CocAction('format')
+    autocmd FileType scss setlocal iskeyword+=@-@
+augroup END
+
+
+" theme dracula
+" if (has("termguicolors"))
+"  set termguicolors
+" endif
+" syntax enable
+" colorscheme dracula
+" theme dracula
+
+
+" markdown settings
+" Disable math tex conceal feature
+let g:tex_conceal = ''
+let g:vim_markdown_math = 1
+"vimspector
+nmap <F1> :CocCommand java.debug.vimspector.start<CR>
+
+" Markdown
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_fenced_languages = ['tsx=typescriptreact']
+" markdown settings
+
 " ----comandos modo escritura inoremaps-------------------
 imap <F12> <C-R>=expand('%:p:h')<CR>
 imap <c-s> <Esc>:w<CR>a
@@ -198,8 +244,8 @@ let g:startify_bookmarks = [
 
    " \{ 'd': '~/aqui' },ir agregando rutas puestas en bookmark
    " \{ 'f': '~/aqui' },ir agregando rutas que vaya poniendo en bookmark
-""-- startify --
-""-----------------------coc-----------------------------------
+"-- startify --
+"-----------------------coc-----------------------------------
 
 " Required:
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -234,7 +280,6 @@ endfunction
 noremap <silent><expr> <c-space> coc#refresh()
 
 "-----------------------coc-----------------------------------
-
 
 "-------shortcuts customized without lider--------------------
 
@@ -292,7 +337,8 @@ nmap <Leader>Q :q!<CR>
 nmap <Leader>sa :lcd %:p:h<CR>:saveas 
 
 "Ejecutar archivo actual en toggletermina con java con TermExec
-nmap <Leader>j :TermExec cmd='clear; javac % ; java %'<CR>
+nmap <Leader>J :w<CR>:TermExec cmd='clear; javac % ; java %'<CR>
+nmap <Leader>j :w<CR>:TermExec cmd='clear; java %'<CR>
 
 " shortcut para abrir terminal limpia con toggleterminal
 nmap <Leader>t :TermExec cmd='clear'<CR>
@@ -314,13 +360,13 @@ noremap <leader>nb :Bookmark<CR>
 "borra todos los bookmarks
 " noremap <leader>nab :Bookmark<CR>
 
-""-- startify --
+"-- startify --
 nmap<leader>st :Startify<CR>
 nmap<leader>ss :SSave<CR>
 nmap<leader>sd :SDelete<CR>
 nmap<leader>sl :SLoad<CR>
 nmap<leader>sc :SClose<CR>
-""-- startify --
+"-- startify --
 
 "-- spectre --
 
@@ -890,6 +936,12 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
  
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+" Plugin 'garbas/vim-snipmate'
+" Plugin 'ddgrvcoelho/vim-javascript-snippets'
+" Plugin 'puremourning/vimspector'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -898,14 +950,23 @@ filetype plugin indent on    " required
  " lua -> packer
 lua require('luaplugins.plugins')
 
+ " lua ->settings
+lua require('settings.settings')
+
  " configs de plugins
 lua require('luaplugins.toggleterm')
 lua require('luaplugins.trouble')
 lua require('luaplugins.todo-comments')
 lua require('luaplugins.nvim-notify')
 
- " lua ->settings
-lua require('settings.settings')
+" lua require('luaplugins.java')
+" lua require("nvim-lsp-installer")
+" lua require('luaplugins.java')
+" lua require("nvim-lsp-installer")
+" lua require('jc')
+
+
+
 
 
 " plug = guarda los plugs en la carpeta de home/.config/nvim/plugged
