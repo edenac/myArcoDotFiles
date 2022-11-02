@@ -19,7 +19,12 @@ if status is-interactive
     alias update-fc='sudo fc-cache -fv' # to font install 
     alias sysfailed="systemctl list-units --failed"
     alias bls="betterlockscreen -u /usr/share/backgrounds/arcolinux/"
-    alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
-#   alias upclean= 'sudo pacman -Syyu --nocofirm --needed ; sudo pacman -Rns $(pacman-Qtdq) --noconfirm --needed' 
+    alias grubconfig="sudo $EDITOR /etc/default/grub"
+    alias grubupdate="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+    alias grubootconfig="sudo $EDITOR /boot/grub/grub.cfg"
+    alias keyfix="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
+    alias fix-pacman-conf="/usr/local/bin/arcolinux-fix-pacman-conf"
+    alias fix-pacman-keyserver="/usr/local/bin/arcolinux-fix-pacman-gpg-conf"
+
 
 end

@@ -44,7 +44,7 @@ run sxhkd -c ~/.config/qtile/sxhkd/sxhkdrc &
 
 #starting utility applications at boot time
 run nm-applet &
-run pamac-tray &
+# run pamac-tray &
 # run xfce4-power-manager &
 numlockx on &
 blueberry-tray &
@@ -57,6 +57,7 @@ run volumeicon &
 notion-app &
 alacritty &
 brave &
-thunar & 
+firefox &
+# thunar & 
 #run firefox &
 #run spotify &
