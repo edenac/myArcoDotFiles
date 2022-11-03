@@ -11,10 +11,13 @@ https://github.com/seebye/ueberzug
 <br/>
 <br/>
 ![qtile](.config/qtile/img/qtile2.png)
-![qtile](.config/qtile/img/qtil3.png)
+![qtile](.config/qtile/img/qtile3.png)
 <br/>
 <br/>
 ## awesome
+Install this catpuccin sh for the polybar pwermenu
+https://github.com/catppuccin/gtk
+</br>
 ![awesome](.config/Awesome/img/awesome-alacritty.png)
 ![awesome](.config/Awesome/img/awesome-polybar.png)
 ![awesome](.config/Awesome/img/awesome-rofi.png)
