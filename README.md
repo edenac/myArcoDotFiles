@@ -17,7 +17,7 @@ https://github.com/seebye/ueberzug
 ## awesome
 Install this catpuccin sh for the polybar pwermenu
 https://github.com/catppuccin/gtk
-</br>
+<br/>
 ![awesome](.config/Awesome/img/awesome-alacritty.png)
 ![awesome](.config/Awesome/img/awesome-polybar.png)
 ![awesome](.config/Awesome/img/awesome-rofi.png)
