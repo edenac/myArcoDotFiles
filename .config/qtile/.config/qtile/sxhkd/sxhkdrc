@@ -3,28 +3,20 @@
 #################################################################
 
 #################################################################
-# SUPER + FUNCTION KEYS
+# SUPER + key = opening apps
 #################################################################
-
-#Thunar
-# super + F8
-#     thunar
 
 #Spotify
 super + F7
     spotify
 
 #File-Manager
-# super + e
-# 	nautilus
+super + e
+	thunar
 
 #archlinux-tweak-tool
 super + t
     archlinux-tweak-tool
-
-#################################################################
-# SUPER + ... KEYS
-#################################################################
 
 #Rofi
 super + r
@@ -40,7 +32,6 @@ super + c
 super + x
     archlinux-logout
 
-
 #Pavucontrol
 super + v
     pavucontrol
@@ -49,26 +40,41 @@ super + v
 super + Return
     alacritty
 
-#Xkill
-super + Escape
-    xkill
-
-
 #Keyboard dependent
 #alacritty
 super + KP_Enter
 	alacritty
 
+#arcolinux-welcome-app
+super + w
+     arcolinux-welcome-app
+
+#Pamac-manager
+super + p
+    pamac-manager
+
+#brave
+super + b
+     brave
+
+#Pulse Audio Control
+super + u
+     pavucontrol
+
+
+# # File-Manager
+# super + shift + Return
+# 	thunar
+
 #################################################################
-# SUPER + SHIFT KEYS
+# SUPER + SHIFT KEYS = script execution
 #################################################################
 
 #Keyboard dependent
 
-
-# File-Manager
-super + shift + Return
-	thunar
+#Xkill
+super + shift + Escape
+    xkill
 
 #dmenu
 super + shift + d
@@ -78,172 +84,70 @@ super + shift + d
 super + shift + s
 	pkill -USR1 -x sxhkd
 
+#Picom Toggle
+super + shift + o
+    ~/.config/qtile/scripts/picom-toggle.sh
+
+#Reload Qtile: is already setted in ~/.config/qtile/config.py
+#super + shift + r
+#    qtile-cmd -o cmd -f restart
+
+#Reload Qtile: the classic way if is a clean qtile  installation
+# control + shift + r
+#    qtile-cmd -o cmd -f restart
+#usually used when mi qtile config does not working and in a clean qtile installation, try to use this and all layouts that i have in a clean qtile installation ever
+
 #################################################################
 # CONTROL + ALT KEYS
 #################################################################
 
-#arcolinux-welcome-app
-ctrl + alt + w
-     arcolinux-welcome-app
-
-#conky-rotate
-# ctrl + alt + Next
-#      conky-rotate -n
-
-#conky-rotate
-# ctrl + alt + Prior
-#     conky-rotate -p
-
-#Firefox
+#Firefox: super+f is already used for toggling full screen
 ctrl + alt + f
      firefox
 
-#brave
-ctrl + alt + b
-     brave
-
-#Nitrogen
-# ctrl + alt + n
-#      nitrogen
-
-#Pamac-manager
-ctrl + alt + p
-    pamac-manager
-
-#Xfce4-settings-manager
-# ctrl + alt + m
-#      xfce4-settings-manager
-
-#Pulse Audio Control
-ctrl + alt + u
-     pavucontrol
-
-#Rofi theme selector
-# ctrl + alt + r
-#   rofi-theme-selector
-
-#Spotify
-ctrl + alt + s
-   spotify
-
-#alacritty
-ctrl + alt + Return
-    alacritty
-
-#alacritty
+#alacritty: just for keep the classic linux way
 ctrl + alt + t
     alacritty
-
-#Vivaldi
-# ctrl + alt + v
-#     vivaldi-stable
-
-#Xfce4-appfinder
-# ctrl + alt + a
-#     xfce4-appfinder
-
 
 #################################################################
 # ALT + ... KEYS
 #################################################################
 
-#por si algun dia se me antoja
-#Wallpaper trash
+#Ejemplo para agregar comandos
 # alt + t
-#     variety -t
-
-#Wallpaper next
-# alt + n
-#     variety -n
-
-#Wallpaper previous
-# alt + p
-#     variety -p
-
-#Wallpaper favorite
-# alt + f
-#     variety -f
-
-#Wallpaper previous
-# alt + Left
-#     variety -p
-
-#Wallpaper next
-# alt + Right
-#     variety -n
-
-#Wallpaper toggle-pause
-# alt + Up
-#     variety --toggle-pause
-
-#Wallpaper resume
-# alt + Down
-#     variety --resume
-
-#Xfce4-appfinder
-# alt + F2
-#     xfce4-appfinder --collapsed
+#    terminal 
 
 #################################################################
-#VARIETY KEYS WITH PYWAL
+# ALT + SHIFT + key
 #################################################################
 
-#Wallpaper trash
+#ejemplo para agregar comandos
 # alt + shift + t
-#     variety -t && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
-
-#Wallpaper next
-# alt + shift + n
-#     variety -n && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
-
-#Wallpaper previous
-# alt + shift + p
-#     variety -p && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
-
-#Wallpaper favorite
-# alt + shift + f
-#     variety -f && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
-
-#Wallpaper update
-# alt + shift + u
-#     wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
+#    terminal 
 
 #################################################################
 # CONTROL + SHIFT KEYS
 #################################################################
 
-#Xcfe4-TaskManager
+#ejemplo para agregar comandos
 # ctrl + shift + Escape
 #     xfce4-taskmanager
-
 
 #################################################################
 #     SCREENSHOTS
 #################################################################
 
-##Scrot
-#Print
-#    scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'
-
 #screeenshooter
 ctrl + Print
      gnome-screenshot -i
-
-#      xfce4-screenshooter
-
-#Gnome-Screenshot
-# ctrl + shift + Print
-     # gnome-screenshot -i
-
 
 #################################################################
 #     FUNCTION KEYS
 #################################################################
 
-#xfce4-terminal dropdown
+#ejemplo para agregar comandos
 # F12
-    # xfce4-terminal --drop-down
-
+    # terminal 
 
 #################################################################
 #     MULTIMEDIA KEYS
@@ -294,6 +198,8 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
     xbacklight -dec 10
 
+# configs iniciales de cualquier TWM
+# algunas configs ya vienen hechas en el config del twm config.py de qtile y rc.lua de awsm
 #########################
 #        POLYBAR        #
 #########################
@@ -303,7 +209,6 @@ XF86MonBrightnessDown
 #super + y
 #    polybar-msg cmd toggle
 
-
 #################################################################
 #################################################################
 ##################   DESKTOP SPECIFIC    ########################
@@ -311,17 +216,9 @@ XF86MonBrightnessDown
 #################################################################
 
 #################################################################
-# CTRL + ALT KEYS
-#################################################################
-
-#Picom Toggle
-ctrl + alt + o
-    ~/.config/qtile/scripts/picom-toggle.sh
-
-#################################################################
 # SUPER + KEYS
 #################################################################
-
+# util para archlinux limpio con qtile
 #Toggle fullscreen of window
 #super + f
 #    qtile-cmd -o window -f toggle_fullscreen
@@ -345,7 +242,7 @@ ctrl + alt + o
 #################################################################
 # SUPER KEYS
 #################################################################
-
+# util para archlinux limpio con qtile
 #Focus selected desktop
 #super + Tab
 #    qtile-cmd -o screen -f next_group
@@ -354,11 +251,10 @@ ctrl + alt + o
 #super + space
 #    qtile-cmd -o cmd -f next_layout
 
-
 #################################################################
 # SUPER + SHIFT KEYS
 #################################################################
-
+# util para archlinux limpio con qtile
 #kill
 #super + shift + q
 #    qtile-cmd -o window -f kill
@@ -385,20 +281,14 @@ ctrl + alt + o
 #super + shift + space
 #    qtile-cmd -o window -f toggle_floating
 
-#Reload Qtile
-#super + shift + r
-#    qtile-cmd -o cmd -f restart
-
-
 #################################################################
 # SUPER + ALT KEYS
 #################################################################
-
+# util para archlinux limpio con qtile
 # FLIP LAYOUT FOR BSP
 
 #super + alt + {h,j,k,l}
 #    qtile-cmd -o layout -f {flip_left,flip_down,flip_up,flip_right}
-
 
 ##################################
 ## The RESIZE KEYS ARE RESERVED ##
