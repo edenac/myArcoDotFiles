@@ -47,7 +47,7 @@ alias updqte='sudo pacman -Syyu'
 alias upqll='paru -Syu --noconfirm'
 alias upal='paru -Syu --noconfirm'
 alias p='pacman'
-alias p='fish'
+alias f='fish'
 
 ## Colorize the grep command output for ease of use (good for log files)##
 alias grep='grep --color=auto'
