@@ -1,6 +1,6 @@
 ### EXPORT ###
-export EDITOR='nvim'
-export VISUAL='nvim'
+export EDITOR='lvim'
+export VISUAL='lvim'
 export HISTCONTROL=ignoreboth:erasedups
 export PAGER='most'
 
@@ -47,6 +47,7 @@ alias updqte='sudo pacman -Syyu'
 alias upqll='paru -Syu --noconfirm'
 alias upal='paru -Syu --noconfirm'
 alias p='pacman'
+alias p='fish'
 
 ## Colorize the grep command output for ease of use (good for log files)##
 alias grep='grep --color=auto'
@@ -365,3 +366,7 @@ alias personal='cp -Rf /personal/* ~'
 #cpufetch
 #colorscript random
 fish
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
