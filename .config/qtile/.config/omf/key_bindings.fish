@@ -5,7 +5,7 @@
 bind \cc 'commandline -r ""'
 bind \cy redo
 bind \ch history
-bind \ct 'tree -C'
+bind \ct 'tree -C | bat'
 
 # go to something or things which control can not handle it
 
