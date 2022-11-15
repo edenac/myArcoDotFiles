@@ -14,6 +14,7 @@ bind \e\[3\;5~ kill-word
 
 # go to something
 bind \eh htop
+bind \eb btop
 bind \er ranger
 bind \et tmux
 bind \en nvim
