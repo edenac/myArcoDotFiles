@@ -6,6 +6,7 @@ bind \cc 'commandline -r ""'
 bind \cy redo
 bind \ch history
 bind \ct 'tree -C | bat'
+bind \cg lazygit
 
 # go to something or things which control can not handle it
 
@@ -19,6 +20,7 @@ bind \er ranger
 bind \et tmux
 bind \en nvim
 bind \el lvim
+bind \eg gotop
 
 # bind \t forward-char
 
