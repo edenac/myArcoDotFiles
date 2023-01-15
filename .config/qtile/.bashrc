@@ -1,8 +1,12 @@
 ### EXPORT ###
+# Variables de entorno
 export EDITOR='lvim'
 export VISUAL='lvim'
 export HISTCONTROL=ignoreboth:erasedups
 export PAGER='most'
+export MAVEN_HOME='/home/edenac/maven'
+export PATH=$PATH:$MAVEN_HOME/bin
+# export JAVA_HOME='/home/edenac/maven/' #lo tiene en control sdkman de lo contrario aplicaría
 
 #Ibus settings if you need them
 #type ibus-setup in terminal to change settings and start the daemon
@@ -365,8 +369,12 @@ alias personal='cp -Rf /personal/* ~'
 #sysinfo-retro
 #cpufetch
 #colorscript random
-fish
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+
+# fish al final para que de esta manera tenga disponible todo lo del bash contando el sdkman 
+# de aqui arriba el cual se inicializa
+fish
