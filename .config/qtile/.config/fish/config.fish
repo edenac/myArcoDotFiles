@@ -18,9 +18,16 @@ if status is-interactive
     alias lg "lazygit"
 
 # updates
+  # update with pacman
     alias update-db='sudo pacman -Sy'
     alias update-system='sudo pacman -Syyu'
-    alias update-fc='sudo fc-cache -fv' # to font install 
+
+  # update with yay pending due to better is apply te real commando to memorize
+
+  # update just one package (app)
+
+  # update cache
+    alias update-fc='sudo fc-cache -fv' # to do work a font instaled
 
 # fixes
     alias sysfailed="systemctl list-units --failed"
@@ -37,7 +44,9 @@ if status is-interactive
   alias bls="betterlockscreen -u /usr/share/backgrounds/arcolinux/"
 
 # install / uninstall
-    alias ys "yay -S" # to use AUR repositories and as user not root
+
+  # to use AUR community-repositories and as user strictly NOT ROOT, DON'T USE AS ROOT
+    alias yins "yay -S" 
   
   # to use official pacman repositorires as root
     alias pins "sudo pacman -S"

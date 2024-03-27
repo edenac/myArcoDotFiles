@@ -4,7 +4,7 @@
 # execute
 bind \cc 'commandline -r ""'
 bind \cy redo
-bind \ch history
+bind \ch 'history | head -50'
 bind \ct 'tree -C | bat'
 bind \cg lazygit
 
